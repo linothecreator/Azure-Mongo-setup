@@ -15,24 +15,23 @@
 <body>
     <center>
      <H2>Template Uploader</H2>
-     <form id="form" action="/upload" method="post">
-     <label>First Name</label>
-     <br>
-     <input type="text" id="firstName" name="firstName">
-     <br>
-     <label>Last Name</label>
-     <br>
-     <input type="text" id="lastName" name="lastName">
-     <br>
-     <label>File Name</label>
-     <br>
-     <input type="text" id="fileName" name="fileName">
-     <br>
-     <input type="submit" id="formButton" style="display:none">
-     <input id="element" type="text" style="display: none">
-     </form>
-     
 
+     <form id="form" action="/upload" method="POST">
+     <label>First Name</label><br>
+     <input type="text" id="firstName" name="firstName"><br>
+     <label>Last Name</label><br>
+     <input type="text" id="lastName" name="lastName"><br>
+     <label>File Name</label><br>
+     <input type="text" id="fileName" name="fileName"><br>
+
+     <button id="selectButton">Select Files</button>
+
+     <button id="dummyButton">Done</button>
+     <!-- <input type="submit" id="formButton" style="display:none"> -->
+     </form>
+
+   
+     <input type="file" id="fileInput" name="fileInput" multiple="" style="display:none">
 
      
      <div id="ab1" value="nofile selected"></div>
@@ -48,9 +47,7 @@ console.log("script");</script>
 
    
 
-    <button id="selectButton">Select Files</button>
-    <input type="file" id="fileInput" name="fileInput" multiple="" style="display:none">
-    <button id="dummyButton">Done</button>
+   
   
     </center>     
     <script src="/azure.f56de615.js" type="text/javascript"></script> 
