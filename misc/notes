@@ -1,0 +1,17 @@
+In azure create an account with the role to enable blob listing acces
+
+azure.js changed fileInput to _fileInput [refactor]
+
+create.html changed file-input to fileInput
+
+server.js  created _fileInput=req.body.fileInput; [refactor]
+
+server.js added if statement for (_fileURl) on post method 
+
+blockBlobClient.url returns url of blob
+
+moved azure.js inside server.js
+document is not defined 
+all html elements are now req.body (body-parser) methods inside express methods
+
+we need to get the azure url into the server.js file

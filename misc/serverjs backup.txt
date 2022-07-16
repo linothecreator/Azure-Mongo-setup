@@ -1,0 +1,64 @@
+
+
+
+
+
+
+var {disableResponseDecompressionPolicy}= require("@azure/core-http");
+var {ClientRequest} = require("http");
+require("regenerator-runtime/runtime");
+var {BlobServiceClient} = require("@azure/storage-blob");
+
+
+//select button
+var selectButton = document.getElementById("select-button");
+//file input button
+var _fileInput = document.getElementById("fileInput");
+//Shared Access Signature URL
+var SASurl="https://databsetut.blob.core.windows.net/container?sp=racwdl&st=2022-06-24T02:15:21Z&se=2022-07-01T10:15:21Z&sip=0.0.0.0-255.255.255.255&sv=2021-06-08&sr=c&sig=1TMOGcx4Bt7Iqrqt8N41%2FE%2BJeWQ3XheYpKwUfKfbMHM%3D"
+
+//lets create a blob service client
+const blobServiceClient = new BlobServiceClient(SASurl);
+const container="container"
+const containerClient=blobServiceClient.getContainerClient(container);
+console.log("Hello World");
+console.log(containerClient);
+
+//lets write a function to upload an array of blobs
+async function uploadBlob() {
+    // alert('click');
+
+try{
+    const arr =[];
+    for (const file of _fileInput.files)
+
+    {
+        //identify the file
+        
+        const blockBlobClient = containerClient.getBlockBlobClient(file.name);
+        console.log(file.name)
+        console.log(blockBlobClient)                
+       //upload file
+        arr.push(blockBlobClient.uploadBrowserData(file));
+        document.getElementById("getUrl").value=blockBlobClient.url
+    } 
+    await Promise.all(arr);
+    alert("Upload Successful");
+
+}
+catch (error) {
+alert("something went wrong")
+}}
+
+//html upload methods
+selectButton.addEventListener("click", () => _fileInput.click());
+_fileInput.addEventListener("click", uploadBlob);
+
+var blobUrl=blockBlobClient.url;
+export default blobUrl;
+
+
+
+
+
+
