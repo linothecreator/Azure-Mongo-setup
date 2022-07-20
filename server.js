@@ -25,6 +25,21 @@ const io = require('socket.io')(server);
 //load main page
 app.get('/', (req, res) => {res.sendFile(process.cwd() + "/upload.html")});
 
+//MONGO POST METHOD
+var ab1, employee, empSchema;
+app.post('/upload', (req, res) => {
+          
+//html element variables (body-parser)
+// var fName=req.body.firstName;
+// var lName=req.body.lastName;
+// var fileName=req.body.fileName;
+// var selectButton=req.body.selectButton;
+// var _fileInput = req.body.fileInput;
+   
+// setupMongo();
+
+//upload to mongoDB
+res.send("uploaded");});
 
 //====================================================================================================
 //SOCKET.io
@@ -34,23 +49,7 @@ console.log(socket.id);
 socket.on('event', (data)=>{ab1=data; console.log(ab1);})});
     
 //====================================================================================================
-//MONGO POST METHOD
-var ab1, employee, empSchema;
-app.post('/upload', (req, res) => {
-          
-//html element variables (body-parser)
-var fName=req.body.firstName;
-var lName=req.body.lastName;
-var fileName=req.body.fileName;
-var selectButton=req.body.selectButton;
-var _fileInput = req.body.fileInput;
-   
-// setupMongo();
 
-//upload to mongoDB
-res.send("uploaded");});
-
-//====================================================================================================
 
 //connect to the meta-database
 function mongooseConnect(){
