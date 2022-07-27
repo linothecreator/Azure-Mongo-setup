@@ -16,25 +16,28 @@
     <center>
      <H2>Template Uploader</H2>
 
-     <form id="form" action="/upload" method="">
+     <form id="form" action="/upload" method="post">
      <label>First Name</label><br>
      <input type="text" id="firstName" name="firstName"><br>
      <label>Last Name</label><br>
      <input type="text" id="lastName" name="lastName"><br>
      <label>File Name</label><br>
      <input type="text" id="fileName" name="fileName"><br>
-
-     <button id="selectButton">Select Files</button>
-
-     <button id="dummyButton">Done</button>
-     <input type="submit" id="formButton" style="display:none">
+    <input type="submit" id="formButton" style="display:none">
+    <button id="dummyButton" value="notnull">Done</button>
      </form>
 
-   
-     <input type="file" id="fileInput" name="fileInput" multiple="" style="display:none">
+    <!-- <form action="/test" id="test" method="post">
+    <input type=submit />
+    </form> -->
+    <button id="selectButton">Select Files</button>
+    
+
+    <input type="file" id="fileInput" name="fileInput" multiple="" style="display:none">
 
      
-     <div id="ab1" value="nofile selected"></div>
+    <div id="ab1" value="nofile selected"></div> 
+
     <script>var socket = io.connect('http://localhost:3000');
 socket.emit('join', 'Hello World from webpage');
 var ab1 = document.getElementById("ab1");
@@ -42,12 +45,7 @@ ab1.addEventListener("change", () => {
   console.log("file changed");
   socket.on('ab1', document.getElementById("ab1").value);
 });
-console.log("script");</script>
-    
-
-   
-
-   
+console.log("script");</script>  
   
     </center>     
     <script src="/azure.f56de615.js" type="text/javascript"></script> 

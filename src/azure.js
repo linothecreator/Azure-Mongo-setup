@@ -20,7 +20,7 @@ function sendURL (_url) {
 var selectButton = document.getElementById("selectButton");
 var _fileInput = document.getElementById("fileInput");
 var ab1=document.getElementById("ab1");
-var dummyButton=document.getElementById("dummyButton");
+// var dummyButton=document.getElementById("dummyButton");
 var formButton=document.getElementById("formButton");
 var form=document.getElementById("form");
 
@@ -57,6 +57,6 @@ blockBlobClient.uploadBrowserData(_fileInput.input);
 //html upload methods
 selectButton.addEventListener("click", () => _fileInput.click());
 _fileInput.addEventListener("change", uploadBlob);
-dummyButton.addEventListener("click", () => {form.submit()});
+// dummyButton.addEventListener("click", () => formButton.click());
 
 
