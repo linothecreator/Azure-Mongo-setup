@@ -37,12 +37,8 @@ app.route('/upload')
     createEmpSchema();
     if(!employee||employee===""||employee===null){createEmpModel()} 
     saveData(fName, lName, fileName);
-    res.send("post")
+    res.send("post")});
 
-
-
-
-});
 app.use(bundler.middleware());
   
 //load main page
@@ -93,18 +89,11 @@ if(employee){console.log("2/3 'employee model' Done" )}
         "Files":[
             {"file_id":"null",
             "filename":_fileName, 
-            "fileUrl": ab1}]
-    
-    });
-
+            "fileUrl": ab1}]});
     if(newEmp){console.log("3/3 'employee object' Done"); newEmp.save();}
-
-}
-    else{
-        console.log("Could not retrieve file url");
-        // console.log(ab1);
-        
-}}
+    }
+    else {
+        console.log("Could not retrieve file url");}}
   
 // function setupMongo() {mongooseConnect(); createEmpSchema(); createEmpModel(); }
 
