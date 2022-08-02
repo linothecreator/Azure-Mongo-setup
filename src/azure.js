@@ -56,6 +56,4 @@ blockBlobClient.uploadBrowserData(_fileInput.input);
 //html upload methods
 selectButton.addEventListener("click", () => _fileInput.click());
 _fileInput.addEventListener("change", uploadBlob);
-// dummyButton.addEventListener("click", () => formButton.click());
-
-
+dummyButton.addEventListener("click", () => formButton.click());

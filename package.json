@@ -1,5 +1,5 @@
 {
-  "name": "azuremongotut",
+  "name": "azure-mongo-setup-course",
   "version": "1.0.0",
   "description": "azure monogodb fileuploader",
   "main": "index.js",

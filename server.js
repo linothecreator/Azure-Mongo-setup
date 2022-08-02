@@ -7,7 +7,6 @@ const { copyFileSync } = require('fs');
 const Bundler = require('parcel-bundler');
 require('dotenv').config();
 
-
 const app = express();
    
 //parcel bundler
@@ -19,7 +18,7 @@ let bundler = new Bundler(file, options);
 app.use(express.json());
 app.use("/dist", express.static('./dist'));
 app.use("/src", express.static('./src'));
-app.use(bodyParser.json()); 
+app.use(bodyParser.urlencoded({ extended: true }));
 
 //html form data variables
 var fName, lName, fileName, selectButton, _fileInput;
@@ -30,12 +29,22 @@ app.route('/upload')
     var lName=req.body.lastName;
     var fileName=req.body.fileName;
     var selectButton=req.body.selectButton;
-    var _fileInput=req.body.fileInput;   
-    setupMongo();
-    res.send("post")});
+    var _fileInput=req.body.fileInput;  
+    console.log(fName+lName+fileName);
+    
+    mongooseConnect();
+
+    createEmpSchema();
+    if(!employee||employee===""||employee===null){createEmpModel()} 
+    saveData(fName, lName, fileName);
+    res.send("post")
+
+
+
+
+});
 app.use(bundler.middleware());
   
-
 //load main page
 app.get('/', (req, res, next) => {res.sendFile(process.cwd() + "/dist/upload.html")});
 //MONGO POST METHOD
@@ -46,9 +55,7 @@ var ab1, employee, empSchema;
 const server = require('http').createServer(app);
 var ab1="";
 const io = require('socket.io')(server);
-io.on('connection', socket => {
-console.log(socket.id);
-socket.on('event', (data)=>{ab1=data; console.log(ab1);})});
+io.on('connection', socket => {console.log(socket.id); socket.on('event', (data)=>{ab1=data; console.log(ab1);})});
     
 //====================================================================================================
 //UPLOAD META TO MONGODB
@@ -79,27 +86,27 @@ if(employee){console.log("2/3 'employee model' Done" )}
 }
 
  //...#3 save data model
- function saveData(fName, lName, fileName) {
+ function saveData(_fName, _lName, _fileName) {
     if(ab1){
     const newEmp = new employee({
-        "name":fName+" "+lName,
+        "name":_fName+" "+_lName,
         "Files":[
             {"file_id":"null",
-            "filename":fileName, 
+            "filename":_fileName, 
             "fileUrl": ab1}]
     
-    })
-    newEmp.save();
-    if(newEmp){console.log("3/3 'employee object' Done")}
-   
+    });
+
+    if(newEmp){console.log("3/3 'employee object' Done"); newEmp.save();}
+
 }
     else{
         console.log("Could not retrieve file url");
         // console.log(ab1);
         
-    }}
+}}
   
-function setupMongo() {mongooseConnect(); createEmpSchema(); createEmpModel(); saveData();}
+// function setupMongo() {mongooseConnect(); createEmpSchema(); createEmpModel(); }
 
 
 //====================================================================================================
