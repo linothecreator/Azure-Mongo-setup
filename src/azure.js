@@ -1,4 +1,4 @@
-console.log("azure.js");
+// console.log("azure.js");
 var {disableResponseDecompressionPolicy}= require("@azure/core-http");
 var {ClientRequest} = require("http");
 require("regenerator-runtime/runtime");
